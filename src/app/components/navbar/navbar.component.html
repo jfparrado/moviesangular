@@ -1,25 +1,26 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Videoclub</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a routerLink="/" routerLinkActive="active" class="nav-item nav-link">Inicio</a>
-      <a routerLink="/peliculas" routerLinkActive="active" (click)="handleMousePeliculas()" class="nav-item nav-link">Peliculas</a>
+<nav id="container-nav">
+  <div id="logo-container">
+    <img src="../../../assets/logo.png" alt="logo" />
+  </div>
+
+    <div id="options-container">
+      <a routerLink="/"  class="nav-item nav-link">Inicio</a>
+      <a (click)="handleMousePeliculas()" class="nav-item nav-link">Peliculas</a>
         <div *ngIf="isPeliculasExpanded" class="categorias-container">
-          <p>Estrenos</p>
-          <a routerLink="/peliculas/generos" routerLinkActive="active" (click)="handleMouseGeneros()" class="nav-item nav-link">Generos</a>
+          <p routerLink="/estrenos" >Estrenos</p>
+          <a (click)="handleMouseGeneros()" class="nav-item nav-link">Generos</a>
           <div *ngIf="isGenerosPeliculasExpanded" >
         <div *ngFor="let movieGender of categories" class="categoria-container">
           <ul class="generos">
             <li *ngFor="let category of categories">
-              <a href="/peliculas/{{category.name}}" class="opciones">{{category.name}}</a>
+              <a href="/categorias/{{category.name}}" class="opciones">{{category.name}}</a>
             </li>
           </ul>
         </div></div>
       </div>
     </div>
+
+  <div id="search-container">
+  <input type="text" placeholder="Movie Name" [(ngModel)]="movieName" (keyup.enter)="handleEnter(movieName)" />
   </div>
 </nav>

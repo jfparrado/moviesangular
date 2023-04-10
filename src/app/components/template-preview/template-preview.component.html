@@ -1,0 +1,9 @@
+<h2>{{titulo}}</h2>
+<section class="image-section">
+  <div *ngFor="let video of movies?.slice(0, 5)" class="image-container">
+    <a [routerLink]="['/detailmovie', video.id]">
+      <img [src]="'https://image.tmdb.org/t/p/w185/' + video.poster_path" [alt]="'poster of ' + video.original_title" />
+      <p class="image-text">{{video.original_title}}</p>
+    </a>
+  </div>
+</section>

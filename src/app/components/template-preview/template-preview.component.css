@@ -1,0 +1,31 @@
+h2 {    
+  color: white;
+  margin-top: 5%;
+  margin-left: 5%;
+  font-size: 36px;}
+section {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  .image-text {
+    margin-top: 0.5rem;
+    font-size: 1.2rem;
+    color: white;
+    text-align: center;
+  }
+  
+h2{
+    color: white;
+}  
+.image-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+p{
+  text-decoration: underline;
+  text-decoration-color: #384047;;
+}
+a {
+  text-align: center;
+}

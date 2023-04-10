@@ -1,0 +1,32 @@
+<div class="detail-movie-container" *ngIf="detailMovie.id === +id">
+    <h2>{{detailMovie.original_title}}</h2>
+    <div class="detail-movie-info-container">
+      <img [src]="'https://image.tmdb.org/t/p/w185/' + detailMovie.poster_path" [alt]="'poster of ' + detailMovie.original_title" class="detail-movie-poster" />
+      <div class="detail-movie-text-container">
+        <table>
+          <tr>
+            <td>
+              <p><strong>Original Title:</strong> {{detailMovie.original_title}}</p>
+              <p><strong>Original Language:</strong> {{detailMovie.original_language}}</p>
+              <p><strong>Genres:</strong> {{detailMovie.genres && detailMovie.genres.join(', ')}}</p>
+              <p><strong>Release Date:</strong> {{detailMovie.release_date}}</p>
+              <p><strong>Duration:</strong> {{detailMovie.runtime}}</p>
+              <p><strong>Homepage:</strong> {{detailMovie.homepage}}</p>
+            </td>
+            <td>
+              <p><strong>Popularity:</strong> {{detailMovie.popularity}}</p>
+              <p><strong>Budget:</strong> {{detailMovie.budget}}</p>
+              <p><strong>Revenue:</strong> {{detailMovie.revenue}}</p>
+              <p><strong>Spoken Languages:</strong> {{ detailMovie.spoken_languages && detailMovie.spoken_languages.join(', ')}}</p>
+              <p><strong>Status:</strong> {{detailMovie.status}}</p>
+              <p><strong>Vote Average:</strong> {{detailMovie.vote_average}}</p>
+            </td>
+          </tr>
+        </table>
+        <p><strong>Overview:</strong> {{detailMovie.overview}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="imgContainer" *ngIf="detailMovie.id !== +id">
+    <img src="loading" alt="loading" />
+  </div>
