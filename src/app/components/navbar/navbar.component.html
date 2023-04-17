@@ -7,17 +7,16 @@
       <a routerLink="/"  class="nav-item nav-link">Inicio</a>
       <a (click)="handleMousePeliculas()" class="nav-item nav-link">Peliculas</a>
         <div *ngIf="isPeliculasExpanded" class="categorias-container">
-          <p routerLink="/estrenos" >Estrenos</p>
+          <p routerLink="/estrenos" class="justtext">Estrenos</p>
           <a (click)="handleMouseGeneros()" class="nav-item nav-link">Generos</a>
-          <div *ngIf="isGenerosPeliculasExpanded" >
-        <div *ngFor="let movieGender of categories" class="categoria-container">
-          <ul class="generos">
-            <li *ngFor="let category of categories">
-              <a href="/categorias/{{category.name}}" class="opciones">{{category.name}}</a>
-            </li>
-          </ul>
-        </div></div>
-      </div>
+          <div id="secondcont" *ngIf="isGenerosPeliculasExpanded" >
+              <ul class="generos">
+                <li *ngFor="let category of categories" class="opciones">
+                  <a href="/categorias/{{category.name}}" >{{category.name}}</a>
+                </li>
+              </ul>
+          </div>
+        </div>
     </div>
 
   <div id="search-container">
