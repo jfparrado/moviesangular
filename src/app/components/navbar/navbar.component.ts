@@ -27,7 +27,11 @@ export class NavbarComponent implements OnInit {
 
   isPeliculasExpanded: boolean = false;
   isGenerosPeliculasExpanded: boolean = false;
+  isMenuOpen: boolean = false;
 
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
   handleMousePeliculas = () => this.isPeliculasExpanded = !this.isPeliculasExpanded;
   handleMouseGeneros = () => this.isGenerosPeliculasExpanded = !this.isGenerosPeliculasExpanded;
   handleEnter(movieName: string): void {

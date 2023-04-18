@@ -2,24 +2,33 @@
   <div id="logo-container">
     <img src="../../../assets/logo.png" alt="logo" />
   </div>
-
-    <div id="options-container">
-      <a routerLink="/"  class="nav-item nav-link">Inicio</a>
-      <a (click)="handleMousePeliculas()" class="nav-item nav-link">Peliculas</a>
-        <div *ngIf="isPeliculasExpanded" class="categorias-container">
-          <p routerLink="/estrenos" class="justtext">Estrenos</p>
-          <a (click)="handleMouseGeneros()" class="nav-item nav-link">Generos</a>
-          <div id="secondcont" *ngIf="isGenerosPeliculasExpanded" >
-              <ul class="generos">
-                <li *ngFor="let category of categories" class="opciones">
-                  <a href="/categorias/{{category.name}}" >{{category.name}}</a>
-                </li>
-              </ul>
-          </div>
+  <div class="navbar-collapse" [ngClass]="{'show': isMenuOpen}">
+    <div class="navbar-nav">
+      <div class="column">
+        <div id="options-container">
+          <a routerLink="/"  class="main-item">Inicio</a>
+          <a (click)="handleMousePeliculas()" class="main-item">Peliculas</a>
+            <div *ngIf="isPeliculasExpanded" class="categorias-container">
+              <p routerLink="/estrenos" class="justtext">Estrenos</p>
+              <a (click)="handleMouseGeneros()" class="justtext">Generos</a>
+              <div id="secondcont" *ngIf="isGenerosPeliculasExpanded" >
+                  <ul class="generos">
+                    <li *ngFor="let category of categories" class="opciones">
+                      <a class="opcion" href="/categorias/{{category.name}}" >{{category.name}}</a>
+                    </li>
+                  </ul>
+              </div>
+            </div>
         </div>
-    </div>
 
-  <div id="search-container">
-  <input type="text" placeholder="Movie Name" [(ngModel)]="movieName" (keyup.enter)="handleEnter(movieName)" />
+        <div id="search-container">
+        <input type="text" placeholder="Movie Name" [(ngModel)]="movieName" (keyup.enter)="handleEnter(movieName)" />
+        </div>
+      </div>
+    </div>
   </div>
+
+  <button class="navbar-toggler d-lg-none" type="button" (click)="toggleMenu()">
+    <img src="../../../assets/menu-button.png" alt="Toggle menu icon">
+  </button>
 </nav>
