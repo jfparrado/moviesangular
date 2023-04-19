@@ -1,23 +1,26 @@
 <div>
-    <br />
-    <h2>{{titulo}}</h2>
-    <ng-container *ngIf="movies.length !== 0; else loadingBlock">
-      <ng-container *ngFor="let index of [0, 1, 2, 3]">
-        <section class="image-section">
-          <ng-container *ngFor="let video of movies.slice(index * 5, (index + 1) * 5)">
-            <div class="image-container">
-              <a [routerLink]="['/detailmovie', video.id]">
-                <img [src]="'https://image.tmdb.org/t/p/w185/' + video.poster_path" [alt]="'poster of ' + video.original_title"/>
-                <p class="image-text">{{ video.original_title }}</p>
-              </a>
-            </div>
-          </ng-container>
-        </section>
-      </ng-container>
+  <br />
+  <h2>{{titulo}}</h2>
+  <ng-container *ngIf="movies.length !== 0; else loadingBlock">
+    <ng-container *ngFor="let index of [0, 1, 2, 3]">
+      <section class="image-section">
+        <ng-container *ngFor="let video of getMoviesWithPosters().slice(index * 5, (index + 1) * 5)">
+          <div class="image-container">
+            <a [routerLink]="['/detailmovie', video.id]">
+              <img [src]="'https://image.tmdb.org/t/p/w185/' + video.poster_path" [alt]="'poster of ' + video.original_title"/>
+              <p class="image-text">{{ video.original_title }}</p>
+            </a>
+          </div>
+        </ng-container>
+      </section>
     </ng-container>
-    <ng-template #loadingBlock>
-      <div class="imgContainer">
-        <img src="../../../assets/loading.gif" alt="loading" />
-      </div>
-    </ng-template>
-  </div>
+  </ng-container>
+  <ng-template #loadingBlock>
+    <div class="imgContainer" *ngIf="showLoading">
+      <img src="../../../assets/loading.gif" alt="loading" />
+    </div>
+    <ng-container *ngIf="showNoResults">
+      <p id="noResults" >No se encontraron resultados</p>
+    </ng-container>
+  </ng-template>
+</div>
