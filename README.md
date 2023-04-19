@@ -1,3 +1,7 @@
+# ANGULAR MOVIES
+
+Welcome to Angular Movies! This project is designed to do bring information about movies, it is clasified by most rated, most recent, you can view movies per genre or look by name.
+
 # Movies
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.5.
@@ -25,3 +29,18 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Usage
+
+To use Angular Movies follow these steps:
+
+1. Start the server by running `npm start` in the project directory https://github.com/jfparrado/backreact
+2. Open a web browser and navigate to `http://localhost:3000`.
+
+## Reporting Issues
+
+If you find any issues with Angular movies, please report them by opening a GitHub issue in this repository.
+
+## Contact
+
+If you have any questions or comments about Angular movies, please contact us at `jnsparrado@hotmail.com`.
