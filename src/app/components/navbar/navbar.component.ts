@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { categories, GeneralMovie} from 'src/app/interfaces/interfaces';
+import { categories, GeneralMovie } from 'src/app/interfaces/interfaces';
 
 @Component({
   selector: 'app-navbar',
@@ -32,15 +32,22 @@ export class NavbarComponent implements OnInit {
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
+
   handleMousePeliculas = () => this.isPeliculasExpanded = !this.isPeliculasExpanded;
   handleMouseGeneros = () => this.isGenerosPeliculasExpanded = !this.isGenerosPeliculasExpanded;
+
   handleEnter(movieName: string): void {
-    console.log("inside handleEnter");
     if (movieName !== '') {
-      this.http.get<GeneralMovie[]>('http://localhost:3001/search/' + movieName).subscribe((data) => {
+      const sanitizedValue = this.sanitize(movieName);
+      this.http.get<GeneralMovie[]>('http://localhost:3001/search/' + sanitizedValue).subscribe((data) => {
         this.moviesByName = data;
-        this.router.navigateByUrl('/search/' + movieName);
-      });
+        this.router.navigateByUrl('/search/' + sanitizedValue);
+      }, error => { });
     }
-  }  
+  }
+
+  sanitize(value: string): string {
+    // Remover cualquier caracter peligroso
+    return value.replace(/[^a-z0-9\s]/gi, '');
+  }
 }
