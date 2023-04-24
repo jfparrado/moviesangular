@@ -6,13 +6,18 @@ import { DetailMovieComponent } from '../detail-movie/detail-movie.component';
 import { EstrenosPageComponent } from '../estrenos-page/estrenos-page.component';
 import { SearchPageComponent } from '../search-page/search-page.component';
 import { HomePageComponent } from '../home-page/home-page.component';
+import { RegisterComponent } from "../register/register.component";
+import { LoginComponent } from '../login/login.component';
+import { canActivate, redirectUnauthorizedTo } from "@angular/fire/auth-guard";
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
-  { path: 'estrenos', component: EstrenosPageComponent },
-  { path: 'categorias/:gender', component: CategoriasPageComponent },
-  { path: 'search/:movie_name', component: SearchPageComponent },
-  { path: 'detailmovie/:id', component: DetailMovieComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'estrenos', component: EstrenosPageComponent, ...canActivate(()=>redirectUnauthorizedTo(['/register']))},
+  { path: 'categorias/:gender', component: CategoriasPageComponent, ...canActivate(()=>redirectUnauthorizedTo(['/register'])) },
+  { path: 'search/:movie_name', component: SearchPageComponent, ...canActivate(()=>redirectUnauthorizedTo(['/register'])) },
+  { path: 'detailmovie/:id', component: DetailMovieComponent, ...canActivate(()=>redirectUnauthorizedTo(['/register'])) },
   { path: '**', component: NotFoundComponent },
 ];
 

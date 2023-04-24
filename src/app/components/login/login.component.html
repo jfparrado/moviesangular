@@ -1,0 +1,17 @@
+<br/>
+<br/>
+<h2>Inicio de sesion</h2>
+
+<form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" formControlName="email" required>
+    </div>
+    <div>
+      <label for="password">Contraseña:</label>
+      <input type="password" id="password" name="password" formControlName="password" required>
+    </div>
+    <p>No tienes cuenta? <a routerLink="/register">Registrate</a></p>
+    <button type="submit">Iniciar sesion</button>
+    <button (click)="googleLogin()">Iniciar sesion con google</button>
+  </form>

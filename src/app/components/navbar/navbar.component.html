@@ -24,6 +24,9 @@
         <div id="search-container">
           <input type="text" placeholder="Movie Name" [(ngModel)]="movieName" (keyup.enter)="handleEnter(movieName)">
         </div>
+        <button class="navbar-logout" type="button" (click)="onLogOut()">
+          <img src="../../../assets/exit.png" alt="logout button">
+        </button>
       </div>
     </div>
   </div>

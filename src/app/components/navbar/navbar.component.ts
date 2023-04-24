@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { categories, GeneralMovie } from 'src/app/interfaces/interfaces';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,7 +15,11 @@ export class NavbarComponent implements OnInit {
   movieName: string = '';
   private _http: HttpClient;
 
-  constructor(private http: HttpClient, private router: Router, private cdr: ChangeDetectorRef) {
+  constructor(
+    private userService: UserService,
+    private http: HttpClient, 
+    private router: Router, 
+    private cdr: ChangeDetectorRef) {
     this._http = http;
   }
 
@@ -35,6 +40,13 @@ export class NavbarComponent implements OnInit {
 
   handleMousePeliculas = () => this.isPeliculasExpanded = !this.isPeliculasExpanded;
   handleMouseGeneros = () => this.isGenerosPeliculasExpanded = !this.isGenerosPeliculasExpanded;
+  onLogOut() {
+    this.userService.logout()
+    .then(()=>{
+      this.router.navigate(['/'])
+    })
+    .catch(()=>{})
+  }
 
   handleEnter(movieName: string): void {
     if (movieName !== '') {
