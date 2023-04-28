@@ -52,8 +52,17 @@ h2 {
     cursor: pointer;
     transition: background-color 0.2s;
     margin: 0.5%;
+    width: 240px;
   }
   button:hover {
     background-color: #23527c;
   }
-  
+  .titulologin{
+    text-align: center;
+    margin-left:none !important;
+    display: flex;
+    justify-content: center;
+  }
+.simple_paragraph, .titulologin, label{
+  color:white
+}

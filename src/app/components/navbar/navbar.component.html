@@ -24,9 +24,13 @@
         <div id="search-container">
           <input type="text" placeholder="Movie Name" [(ngModel)]="movieName" (keyup.enter)="handleEnter(movieName)">
         </div>
-        <button class="navbar-logout" type="button" (click)="onLogOut()">
+        <button *ngIf="isUserLoggedIn" class="navbar-logout" type="button" (click)="onLogOut()">
           <img src="../../../assets/exit.png" alt="logout button">
         </button>
+        <button *ngIf="!isUserLoggedIn" class="navbar-logout" type="button" (click)="onLogIn()">
+          <img src="../../../assets/login.png" alt="logout button">
+        </button>
+            
       </div>
     </div>
   </div>

@@ -32,9 +32,12 @@ export class LoginComponent implements OnInit{
     this.userService.login(this.formLogin.value)
       .then(response => {
         console.log(response);
-        this.router.navigate(['/login'])
+        this.router.navigate(['/'])
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        console.log(error)
+        alert(error.message)
+      });
   }
   googleLogin(){
     this.userService.loginWithGoogle()

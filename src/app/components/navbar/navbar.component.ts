@@ -21,8 +21,12 @@ export class NavbarComponent implements OnInit {
     private router: Router, 
     private cdr: ChangeDetectorRef) {
     this._http = http;
+    
   }
-
+  public get isUserLoggedIn(): boolean {
+    return this.userService.isLoggedIn();
+  }
+  
   ngOnInit(): void {//esto unicamente trae los difernetes generos
     this._http.get<categories[]>('http://localhost:3001/moviegenders')
       .subscribe(data => {
@@ -40,12 +44,17 @@ export class NavbarComponent implements OnInit {
 
   handleMousePeliculas = () => this.isPeliculasExpanded = !this.isPeliculasExpanded;
   handleMouseGeneros = () => this.isGenerosPeliculasExpanded = !this.isGenerosPeliculasExpanded;
+
   onLogOut() {
     this.userService.logout()
-    .then(()=>{
-      this.router.navigate(['/'])
-    })
-    .catch(()=>{})
+      .then(() => {
+        this.router.navigate(['/'])
+      })
+      .catch(() => { })
+  }
+
+  onLogIn() {
+    this.router.navigate(['/login'])
   }
 
   handleEnter(movieName: string): void {
