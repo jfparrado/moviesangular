@@ -1,26 +1,38 @@
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, signInWithPopup, GoogleAuthProvider } from '@angular/fire/auth';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  constructor(private auth: Auth) { }
+  constructor(private auth: Auth, private cookieService: CookieService) { }
   
   register({email,password}:any){
     return createUserWithEmailAndPassword(this.auth, email, password)
   }
+  async setUpCookies(userCredential:any) {
+    const token = await userCredential.user.getIdToken();
+    const expirationDate = new Date();
 
-  login({email,password}:any){
-    return signInWithEmailAndPassword(this.auth, email, password)
+    expirationDate.setDate(expirationDate.getDate() + 1);
+    this.cookieService.set('jwt', token, expirationDate);
   }
-
-  loginWithGoogle(){
-    return signInWithPopup(this.auth, new GoogleAuthProvider());
+  async login({email,password}:any){
+    const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
+    await this.setUpCookies(userCredential)
   }
+  
+  async loginWithGoogle() {
+    const provider = new GoogleAuthProvider();
+    const userCredential = await signInWithPopup(this.auth, provider);
+    await this.setUpCookies(userCredential)
+  }
+  
 
   logout(){
-    return signOut(this.auth)
+    this.cookieService.delete('jwt');
+    return signOut(this.auth);
   }
 
   isLoggedIn(): boolean {

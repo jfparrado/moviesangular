@@ -24,6 +24,7 @@ export class CategoriasPageComponent {
         .subscribe(data => {
           this.moviesByGender = data;
         });
+      // },error?:());
     }
   }
   getMoviesWithPosters(): GeneralMovie[] {

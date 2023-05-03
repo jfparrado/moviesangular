@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'estrenos', component: EstrenosPageComponent, ...canActivate(()=>redirectUnauthorizedTo(['/register']))},
+  { path: 'estrenos', component: EstrenosPageComponent, ...canActivate(()=>redirectUnauthorizedTo(['/register']))}, //empaquetar esto como variable y ponerla en las demas rutas
   { path: 'categorias/:gender', component: CategoriasPageComponent, ...canActivate(()=>redirectUnauthorizedTo(['/register'])) },
   { path: 'search/:movie_name', component: SearchPageComponent, ...canActivate(()=>redirectUnauthorizedTo(['/register'])) },
   { path: 'detailmovie/:id', component: DetailMovieComponent, ...canActivate(()=>redirectUnauthorizedTo(['/register'])) },
