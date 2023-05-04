@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { GeneralMovie } from '../../interfaces/interfaces';
+import { MoviesService } from "../../services/movies.service";
 
 @Component({
   selector: 'app-estrenos-preview',
@@ -11,11 +12,11 @@ export class EstrenosPreviewComponent {
   movies: GeneralMovie[] = [];
   moviesWithPoster: GeneralMovie[] = [];
   private _http: HttpClient;
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private moviesService: MoviesService) {
     this._http = http;
   }
   ngOnInit(): void {
-    this.http.get<GeneralMovie[]>('http://localhost:3001/latestmovies')
+    this.moviesService.getEstrenosPreview()
       .subscribe(data => {
         this.movies = data;
         this.moviesWithPoster = this.getMoviesWithPosters();
