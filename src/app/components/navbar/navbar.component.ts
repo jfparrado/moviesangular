@@ -58,9 +58,11 @@ export class NavbarComponent implements OnInit {
   }
 
   handleEnter(movieName: string): void {
+    
     if (movieName !== '') {
+      const headers = this.userService.getHeaders()
       const sanitizedValue = this.sanitize(movieName);
-      this.http.get<GeneralMovie[]>('http://localhost:3001/search/' + sanitizedValue).subscribe((data) => {
+      this.http.get<GeneralMovie[]>('http://localhost:3001/search/' + sanitizedValue, { headers }).subscribe((data) => {
         this.moviesByName = data;
         this.router.navigateByUrl('/search/' + sanitizedValue);
       }, error => { });

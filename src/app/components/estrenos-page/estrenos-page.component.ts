@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { GeneralMovie } from '../../interfaces/interfaces';
-import { CookieService } from 'ngx-cookie-service';
+import { UserService } from "../../services/user.service";
 
 @Component({
   selector: 'app-estrenos-page',
@@ -12,13 +12,12 @@ export class EstrenosPageComponent {
   movies: GeneralMovie[] = [];
   latestMovies: GeneralMovie[] = [];
   private _http: HttpClient;
-  constructor(private http: HttpClient, private cookieService: CookieService) {
+  constructor(private http: HttpClient, private userService: UserService) {
     this._http = http;
   }
   ngOnInit(): void {
-    const token = this.cookieService.get('jwt');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    console.log("token:",token);
+    this.userService.refreshFirebaseToken()
+    const headers = this.userService.getHeaders()
     
     this.http.get<GeneralMovie[]>('http://localhost:3001/latestmovies', { headers })
       .subscribe(data => {
