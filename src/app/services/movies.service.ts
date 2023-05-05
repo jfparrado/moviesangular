@@ -31,5 +31,5 @@ export class MoviesService {
   }
   getPerCategory(headers: any, gender: string): Observable<GeneralMovie[]> {
     return this.http.get<GeneralMovie[]>(`${this.basicUrl}moviesbygender/${gender}`, { headers })
-  }
+  } 
 }
