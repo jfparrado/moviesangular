@@ -20,12 +20,13 @@ export interface DetailedMovie {
     original_language: string;
     original_title: string;
     overview: string;
-    poster_path: string;
+    poster_path?: string;
     release_date: string;
     vote_average: number;
     budget: number;
     genre_names: Array<string>;
   }
+  
   export interface categories {
     id: number;
     name: string;
