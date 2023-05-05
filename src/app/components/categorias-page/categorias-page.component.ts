@@ -31,7 +31,4 @@ export class CategoriasPageComponent {
       // },error?:());
     }
   }
-  getMoviesWithPosters(): GeneralMovie[] {
-    return this.movies.filter(movie => movie.poster_path);
-  }  
 }
