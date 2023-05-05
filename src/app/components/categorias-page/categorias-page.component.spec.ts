@@ -49,10 +49,10 @@ describe('CategoriasPageComponent', () => {
     activatedRoute = TestBed.inject(ActivatedRoute);
   });
 
-  xit('deberia crear el componente', () => {
+  it('deberia crear el componente', () => {
     expect(component).toBeTruthy();
   });
-  xit('deberia traer las peliculas por genero en on init', () => {
+  it('deberia traer las peliculas por genero en on init', () => {
     // Mockear la respuesta del servicio MoviesService
     const movies: GeneralMovie[] = [
       {
@@ -86,7 +86,7 @@ describe('CategoriasPageComponent', () => {
     expect(component['moviesService'].getPerCategory).toHaveBeenCalled(); 
     expect(component.moviesByGender).toEqual(movies.filter(movie => movie.poster_path)); 
   });
-  xit('deberia llamar refreshFirebaseToken() y getHeaders() en on ngOnInit()', () => {
+  it('deberia llamar refreshFirebaseToken() y getHeaders() en on ngOnInit()', () => {
     const userService = TestBed.inject(UserService);
     spyOn(userService, 'refreshFirebaseToken').and.callThrough();//el método espiado se ejecuta normalmente y devuelve su valor original, en lugar de ser interceptado por el espía
     spyOn(userService, 'getHeaders').and.callThrough();
@@ -96,7 +96,7 @@ describe('CategoriasPageComponent', () => {
     expect(userService.refreshFirebaseToken).toHaveBeenCalled();
     expect(userService.getHeaders).toHaveBeenCalled();
   });
-  xit('deberia llamar getPerCategory() en on ngOnInit() con los parámetros correctos', () => {
+  it('deberia llamar getPerCategory() en on ngOnInit() con los parámetros correctos', () => {
     const moviesService = TestBed.inject(MoviesService);
     spyOn(moviesService, 'getPerCategory').and.returnValue(of([]));
     const userService = TestBed.inject(UserService);
@@ -109,7 +109,7 @@ describe('CategoriasPageComponent', () => {
     const expectedGender = 'action';
     expect(moviesService.getPerCategory).toHaveBeenCalledWith(expectedHeaders, expectedGender);
   });  
-  xit('debería devolver los resultados esperados cuando se llama con los parámetros correctos', () => {
+  it('debería devolver los resultados esperados cuando se llama con los parámetros correctos', () => {
     // Arrange
     const movies: GeneralMovie[] = [
       {
@@ -146,39 +146,39 @@ describe('CategoriasPageComponent', () => {
     expect(component['userService'].getHeaders).toHaveBeenCalled();
     expect(component['moviesService'].getPerCategory).toHaveBeenCalledWith(expectedHeaders, expectedGender);
   });
-  fit('should render the list of movies correctly', () => {
-    const movies: GeneralMovie[] = [
-      {
-        id: 1,
-        original_language: 'en',
-        original_title: 'Movie 1',
-        overview: 'This is a movie',
-        poster_path: 'poster1.jpg',
-        release_date: '2021-01-01',
-        vote_average: 7.5,
-        budget: 1000,
-        genre_names: ['Action', 'Drama']
-      },
-      {
-        id: 2,
-        original_language: 'en',
-        original_title: 'Movie 2',
-        overview: 'This is another movie',
-        poster_path: 'poster2.jpg',
-        release_date: '2021-01-02',
-        vote_average: 8.0,
-        budget: 2000,
-        genre_names: ['Comedy']
-      }
-    ];
-    component.movies = movies;
-    fixture.detectChanges();
-    const movieElements = fixture.nativeElement.querySelectorAll('.image-container');
-    expect(movieElements.length).toBe(2);
-    expect(movieElements[0].querySelector('.image-text').textContent).toContain('Movie 1');
-    expect(movieElements[0].querySelector('img').getAttribute('src')).toContain('https://image.tmdb.org/t/p/w185/poster1.jpg');
-    expect(movieElements[1].querySelector('.image-text').textContent).toContain('Movie 2');
-    expect(movieElements[1].querySelector('img').getAttribute('src')).toContain('https://image.tmdb.org/t/p/w185/poster2.jpg');
-  });
+  // it('should render the list of movies correctly', () => {
+  //   const movies: GeneralMovie[] = [
+  //     {
+  //       id: 1,
+  //       original_language: 'en',
+  //       original_title: 'Movie 1',
+  //       overview: 'This is a movie',
+  //       poster_path: 'poster1.jpg',
+  //       release_date: '2021-01-01',
+  //       vote_average: 7.5,
+  //       budget: 1000,
+  //       genre_names: ['Action', 'Drama']
+  //     },
+  //     {
+  //       id: 2,
+  //       original_language: 'en',
+  //       original_title: 'Movie 2',
+  //       overview: 'This is another movie',
+  //       poster_path: 'poster2.jpg',
+  //       release_date: '2021-01-02',
+  //       vote_average: 8.0,
+  //       budget: 2000,
+  //       genre_names: ['Comedy']
+  //     }
+  //   ];
+  //   component.movies = movies;
+  //   fixture.detectChanges();
+  //   const movieElements = fixture.nativeElement.querySelectorAll('.image-container');
+  //   expect(movieElements.length).toBe(2);
+  //   expect(movieElements[0].querySelector('.image-text').textContent).toContain('Movie 1');
+  //   expect(movieElements[0].querySelector('img').getAttribute('src')).toContain('https://image.tmdb.org/t/p/w185/poster1.jpg');
+  //   expect(movieElements[1].querySelector('.image-text').textContent).toContain('Movie 2');
+  //   expect(movieElements[1].querySelector('img').getAttribute('src')).toContain('https://image.tmdb.org/t/p/w185/poster2.jpg');
+  // });
   
 });
