@@ -40,19 +40,17 @@ describe('CategoriasPageComponent', () => {
       ]
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(CategoriasPageComponent);
     component = fixture.componentInstance;
     moviesService = TestBed.inject(MoviesService);
     activatedRoute = TestBed.inject(ActivatedRoute);
   });
 
-  it('deberia crear el componente', () => {
+  it('Deberia crear el componente', () => {
     expect(component).toBeTruthy();
   });
-  it('deberia traer las peliculas por genero en on init', () => {
+  it('Deberia traer las peliculas por genero en on init', () => {
     // Mockear la respuesta del servicio MoviesService
     const movies: GeneralMovie[] = [
       {

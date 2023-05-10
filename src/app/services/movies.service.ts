@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { GeneralMovie, DetailedMovie } from '../interfaces/interfaces';
+import { GeneralMovie, DetailedMovie, categories } from '../interfaces/interfaces';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -11,7 +11,7 @@ export class MoviesService {
   private _http: HttpClient;
   movies: GeneralMovie[] = [];
   latestMovies: GeneralMovie[] = [];
-  private basicUrl="http://localhost:3001/";
+  public basicUrl="http://localhost:3001/";
   constructor(private http: HttpClient) {
     this._http = http;
   }
@@ -23,8 +23,17 @@ export class MoviesService {
   getEstrenos(headers: any): Observable<GeneralMovie[]> {
     return this.http.get<GeneralMovie[]>(`${this.basicUrl}latestmovies`, { headers });
   }
+  getByName(headers: any): Observable<GeneralMovie[]> {
+    return this.http.get<GeneralMovie[]>(`${this.basicUrl}latestmovies`, { headers });
+  }
   getEstrenosPreview(): Observable<GeneralMovie[]> {
     return this.http.get<GeneralMovie[]>(`${this.basicUrl}latestmoviespreview`);
+  }
+  getMasVistoPreview(): Observable<GeneralMovie[]> {
+    return this.http.get<GeneralMovie[]>(`${this.basicUrl}topranked`);
+  }
+  getCategorias(): Observable<categories[]> {
+    return this.http.get<categories[]>(`${this.basicUrl}moviegenders`);
   }
   getDetails(headers: any, id: string): Observable<DetailedMovie> {
     return this.http.get<DetailedMovie>(`${this.basicUrl}detailmovie/${id}`, { headers })

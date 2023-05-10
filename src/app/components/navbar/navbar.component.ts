@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { categories, GeneralMovie } from 'src/app/interfaces/interfaces';
 import { UserService } from 'src/app/services/user.service';
+import { MoviesService } from "../../services/movies.service";
 
 @Component({
   selector: 'app-navbar',
@@ -19,16 +20,15 @@ export class NavbarComponent implements OnInit {
     private userService: UserService,
     private http: HttpClient, 
     private router: Router, 
-    private cdr: ChangeDetectorRef) {
+    private cdr: ChangeDetectorRef,private moviesService: MoviesService) {
     this._http = http;
-    
   }
   public get isUserLoggedIn(): boolean {
     return this.userService.isLoggedIn();
   }
   
   ngOnInit(): void {//esto unicamente trae los difernetes generos
-    this._http.get<categories[]>('http://localhost:3001/moviegenders')
+    this.moviesService.getCategorias()
       .subscribe(data => {
         this.categories = data;
       });

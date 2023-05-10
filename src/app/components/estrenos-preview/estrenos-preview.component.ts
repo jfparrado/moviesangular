@@ -11,9 +11,7 @@ import { MoviesService } from "../../services/movies.service";
 export class EstrenosPreviewComponent {
   movies: GeneralMovie[] = [];
   moviesWithPoster: GeneralMovie[] = [];
-  private _http: HttpClient;
-  constructor(private http: HttpClient, private moviesService: MoviesService) {
-    this._http = http;
+  constructor(private moviesService: MoviesService) {
   }
   ngOnInit(): void {
     this.moviesService.getEstrenosPreview()
